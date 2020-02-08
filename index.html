@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Ninn</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #161617;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 100px;
+            color: #ebf0f7;
+        }
+
+        .title {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            font-size: 50px;
+        }
+
+        .heart {
+            height: 200px;
+            margin-top: 35px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="title">See Ninn In</div>
+    <div class="countdown" id="timer"></div>
+    <div>
+        <img src="heart.png" class="heart"/>
+    </div>
+</div>
+<script type="text/javascript">
+    (function () {
+        const dateToSee = new Date('02/18/2020 20:00:00');
+
+        const countDownInterval = setInterval(() => {
+            // get total seconds between the times
+            let delta = Math.abs(dateToSee - new Date()) / 1000;
+
+            // calculate (and subtract) whole days
+            const days = Math.floor(delta / 86400);
+            delta -= days * 86400;
+
+            // calculate (and subtract) whole hours
+            const hours = Math.floor(delta / 3600) % 24;
+            delta -= hours * 3600;
+
+            // calculate (and subtract) whole minutes
+            const minutes = Math.floor(delta / 60) % 60;
+            delta -= minutes * 60;
+
+            // what's left is seconds
+            const seconds = Math.floor(delta % 60);
+
+            if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+                clearInterval(countDownInterval);
+            } else {
+                const timerDiv = document.getElementById('timer');
+                timerDiv.innerText = `${days} ${days > 1 ? 'days' : 'day'} : ${hours} ${hours > 1 ? 'hours' : 'hour'} : ${minutes} ${minutes > 1 ? 'minutes' : 'minute'} : ${seconds} ${seconds > 1 ? 'seconds' : 'second'}`;
+            }
+        }, 1000);
+    })();
+</script>
+</body>
+</html>
